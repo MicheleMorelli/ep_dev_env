@@ -1,0 +1,57 @@
+#! /usr/bin/bash
+
+#reloads the EP repository, sets to permissive, changes the apache conf and restarts the server. 
+
+if [[ $# -eq 0 ]]; then
+	echo '[1;37m---------------------';
+	printf "\n[1m[31mYou must specify which repo you want to reload. [0m \nSo something like: EP_rel [repo ID]\n";
+	bash EP_list;	
+	echo '[1;37m---------------------[0m';
+	exit 0;
+fi
+
+export EP_ID=$1;
+DIR="/home/$USER/eprints/$EP_ID/eprints3/bin";
+
+#Checks if the repo exists or not
+#===================================================
+EP_DIR=/home/$USER/eprints;
+REPO_EXISTS=0;
+
+if [ -d $EP_DIR ]; then 
+	for repo in $EP_DIR/*; do
+		if [[ $repo =~ eprints\/$EP_ID$ ]]; then
+                REPO_EXISTS=1;
+    fi	
+	done
+fi
+
+if [ $REPO_EXISTS -eq 1 ] && [ $EP_ID != 'templates' ]; then
+        printf "[93m\nHooray! The repo exists!\n\n[96m[1mINITIATING THE LOADING PROCESS FOR $EP_ID...\n\n[0m";
+
+else
+    echo '[1;37m---------------------';
+            printf "[1m[31mThe \'$EP_ID\' repository is not installed![0m";
+            bash EP_list;
+            printf "\n[1;37mTo install a new repo, run EP_repo_build.[0m\nExiting reload....\n";
+            echo '[1;37m---------------------';
+            exit 0;
+
+fi 
+#====================================================
+
+#EP command - reload the repo
+$DIR/epadmin reload $EP_ID;
+
+printf "[93m\nREPOSITORY RELOADED!\n\n";
+
+printf "\n[1;37m-Setting to permissive...\n";
+sudo setenforce 0;
+
+printf "\n-Checking Apache configuration...\n";
+sudo perl EP_apache_conf /etc/httpd/conf/httpd.conf;
+
+printf "\n-Restarting Apache...\n";
+sudo apachectl restart;
+
+printf "\n[1m[93mALL DONE![0m\nNow you can check [96mlocalhost:8080[0m on your host...\n\n";
