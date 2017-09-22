@@ -1,0 +1,21 @@
+[2J[;HCentos 7 (64), EPrints box[1;37m
+--------------------------------------------------
+[1mWELCOME TO THE [96mEPRINTS[1;37m DEV ENVIRONMENT v1.0!
+	[21m(DART TEAM EDITION)
+[1;37m--------------------------------------------------
+[96m   
+[4mMAIN COMMANDS:[24m
+[93m
+[1mEP_repo_build[21m ===> builds a new EP repo.
+[1mEP_rel[21m        ===> reloads the repo, updates Apache's conf file, sets to permissive and reloads Apache.
+[1mEP_list[21m       ===> Lists the repositories that are currently installed.    
+[1mEP_log[21m        ===> Runs the Apache error log (tail -f)    
+[31m[1m
+!!NOTE!!
+[1;37m
+-------------------------------------------------
+This dev env forwards port 80 to port 8080 of the host, so to access the repo from the browser of your host use localhost:8080
+--------------------------------------------------			
+[1mHAVE FUN! [21m:-)
+--------------------------------------------------			
+[0m

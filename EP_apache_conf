@@ -1,0 +1,23 @@
+#! /usr/bin/perl -w
+
+#selects the correct EP apache conf line
+#MEMO: $id has to be exported before launching this script
+
+use strict;
+$^I = '';
+
+my $id = $ENV{'EP_ID'};
+
+my $already_activated = 0; # this is to make sure that it does not activate more than one line in case there are any duplicates (kind of likely)
+
+while (<>){
+
+# added or-option for when using the script as root
+	s@^(Include \/home\/(?:$ENV{USER}|vagrant).*)$@#$1@g;
+	#activates only one instance
+	if (!$already_activated && m@^#(?<selected_id>Include .*?$id.*)$@) {
+		s@^#($+{selected_id})$@$1@;
+		$already_activated++;
+	}
+	print;
+}
