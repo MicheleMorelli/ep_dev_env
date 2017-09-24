@@ -1,0 +1,43 @@
+#!/usr/bin/bash
+#INSTALLING EPRINTS ON CENTOS 7
+
+
+# This are the first steps to prepare the environment to build EPrints repositories on Centos 7.
+# PLEASE NOTE! This is only for dev machines and not for any live server. Some of these steps would be very unsecure on a real server!  
+sudo yum -y update;
+
+# GIT
+sudo yum -y install git;
+
+#TREE
+
+sudo yum -y install tree;
+
+# MARIADB
+sudo yum -y install mariadb-server;
+sudo systemctl enable mariadb;
+sudo systemctl start mariadb;
+
+#Securing Mysql
+sudo mysql_secure_installation;
+
+# APACHE2
+sudo yum -y install httpd;
+sudo systemctl enable httpd;
+sudo systemctl start httpd;
+#Changes apache conf user and group to vagrant ==> to be used only on the dev env!!
+sudo perl -pi~ -e "s/^(?<tag>User|Group).*$/$+{'tag'} vagrant/g" /etc/httpd/conf/httpd.conf
+
+# At this point, you will need to make sure that the user and group in /etc/httpd/conf/httpd.conf are the same are in SystemSettings.pm of the Eprints repo (when you will build one). This is the part that is especially unsecure, so do not use this on a live server!
+
+
+# Install the missing Perl Dependencies (in a very ugly way!)
+
+sudo yum -y install epel-release perl-URI perl-libwww-perl perl-CGI-Session perl-XML-Parser perl-Crypt-SSLeay perl-Unicode-String perl-Date-Calc perl-XML-LibXML perl-Time-Piece perl-BSD-Resource perl-Business-ISBN perl-Business-ISBN-Data perl-CGI perl-CPAN perl-Carp perl-Class-Load perl-Class-MethodMaker perl-Class-Singleton perl-Compress-Raw-Bzip2 perl-Compress-Raw-Zlib perl-Crypt-SSLeay perl-DBD-MySQL perl-DBI perl-Data-Dumper perl-Data-OptList perl-DateTime perl-DateTime-Locale perl-DateTime-TimeZone perl-Digest perl-Digest-MD5 perl-Digest-SHA perl-Encode perl-Encode-Locale perl-Error perl-Exporter perl-ExtUtils-Install perl-ExtUtils-MakeMaker perl-ExtUtils-Manifest perl-ExtUtils-ParseXS perl-FCGI perl-File-Listing perl-File-Path perl-File-Temp perl-Filter perl-Getopt-Long perl-Git perl-HTML-Parser perl-HTML-Tagset perl-HTTP-Cookies perl-HTTP-Daemon perl-HTTP-Date perl-HTTP-Message perl-HTTP-Negotiate perl-HTTP-Tiny perl-IO-Compress perl-IO-HTML perl-IO-Socket-IP perl-IO-Socket-SSL perl-LWP-MediaTypes perl-Linux-Pid perl-List-MoreUtils perl-Module-Implementation perl-Module-Runtime perl-Net-Daemon perl-Net-HTTP perl-Net-LibIDN perl-Net-SSLeay perl-Package-DeprecationManager perl-Package-Stash perl-Package-Stash-XS perl-Params-Util perl-Params-Validate perl-PathTools perl-PlRPC perl-Pod-Escapes perl-Pod-Perldoc perl-Pod-Simple perl-Pod-Usage perl-Scalar-List-Utils perl-Socket perl-Storable perl-Sub-Install perl-TermReadKey perl-Test-Harness perl-Text-CSV_XS perl-Text-ParseWords perl-Text-Template perl-Thread-Queue perl-Time-HiRes perl-Time-Local perl-Time-Piece perl-TimeDate perl-Try-Tiny perl-URI perl-Unicode-String perl-WWW-RobotRules perl-XML-Parser perl-constant perl-devel perl-libs perl-libwww-perl perl-local-lib perl-macros perl-parent perl-podlators perl-srpm-macros perl-threads perl-threads-shared;
+
+#to make sure it takes it from epel
+sudo yum -y install mod_perl;
+
+mkdir ~/eprints;
+
+# You are now ready to build an EPrints Repo! (to be continued...)

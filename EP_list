@@ -1,0 +1,20 @@
+#! /usr/bin/bash
+
+# lists the EP repositories that are currently installed
+#TODO: list also the repos that are not installed?
+
+EP_DIR=/home/$USER/eprints;
+c=0;
+export EP_DIR;
+
+if [ -d $EP_DIR ]; then 
+	printf "\n[1m[34mThe following repositories are currently installed on your EP dev env:[0m\n\n"
+	for repo in $EP_DIR/*; do
+		if [[ ! $repo =~ templates ]]; then
+			let c++;
+			echo "[1m[95m$c) $repo[0m" | perl -pe "s/\/home.*?eprints\///g";
+		fi	
+	done
+	printf "\n"
+fi
+
