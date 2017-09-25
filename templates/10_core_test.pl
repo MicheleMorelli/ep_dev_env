@@ -1,7 +1,7 @@
 # This file was created by bin/epadmin
 # You can regenerate this file by doing ./bin/epadmin config_core template
 $c->{host} = 'localhost';
-$c->{port} = 8080;
+$c->{port} = 80;
 $c->{aliases} = [];
 $c->{securehost} = $c->{host};
 $c->{securehost} = '';
