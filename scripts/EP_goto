@@ -1,0 +1,7 @@
+#! /usr/bin/bash
+
+EP_ID=$1;
+EP_DIR=/home/$USER/eprints/$EP_ID/eprints3/archives/$EP_ID;
+
+cd $EP_DIR;
+
