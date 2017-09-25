@@ -1,0 +1,6 @@
+#! /usr/bin/bash
+
+#copies all the EP scripts in the /usr/bin/
+for EP_script in scripts/*; do 
+        sudo cp $EP_script /usr/bin/; 
+done
