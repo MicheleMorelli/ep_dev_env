@@ -12,7 +12,9 @@
 
 [1mlist[21m   ===> Lists the repositories that are currently installed.    
 
-[1mlog[21m    ===> Runs the Apache error log (tail -f)    
+[1mlog[21m    ===> Runs the Apache error log (tail -f).    
+
+[1mgo[21m     ===> Goes to the selected archive/[id] directory.   
 [31m[1m
 !!NOTE!!
 [1;37m
