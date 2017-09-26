@@ -21,3 +21,4 @@ alias list='bash $EP_SCR_DIR/EP_list';
 #to be fixed!
 alias build='bash $EP_SCR_DIR/../repo_builder.sh';
 alias go='. $EP_SCR_DIR/EP_goto';
+alias static='bash $EP_SCR_DIR/EP_static';
