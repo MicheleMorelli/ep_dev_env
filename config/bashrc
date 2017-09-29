@@ -22,3 +22,4 @@ alias list='bash $EP_SCR_DIR/EP_list';
 alias build='bash $EP_SCR_DIR/../repo_builder.sh';
 alias go='. $EP_SCR_DIR/EP_goto';
 alias static='bash $EP_SCR_DIR/EP_static';
+alias testdata='bash $EP_SCR_DIR/EP_create_test_data';
