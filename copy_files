@@ -14,5 +14,8 @@ cp config/bashrc /home/$USER/.bashrc;
 git config --global user.name "$GITNAME";
 git config --global user.email "$GITEMAIL";
 
-printf "\n[96mALL DONE![0m\n"
+printf "\n[96mALL DONE!\nYour Git configuration is:[0m\n";
+echo "======================";
+git config --list;
+echo "======================";
 
