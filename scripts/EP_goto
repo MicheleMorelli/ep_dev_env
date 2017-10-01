@@ -1,5 +1,7 @@
 #! /usr/bin/bash
 
+#goes to eprints3/archives/[repo ID]/ of the specified repo
+
 EP_ID=$1;
 EP_DIR=/home/$USER/eprints/$EP_ID/eprints3/archives/$EP_ID;
 
