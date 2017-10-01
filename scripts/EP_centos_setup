@@ -6,6 +6,9 @@
 # PLEASE NOTE! This is only for dev machines and not for any live server. Some of these steps would be very unsecure on a real server!  
 sudo yum -y update;
 
+# VIM
+sudo yum -y install vim;
+
 # GIT
 sudo yum -y install git;
 
