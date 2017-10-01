@@ -1,0 +1,18 @@
+#!/usr/bin/bash
+
+# set everything up quickly
+echo "What is your git username?";
+read GITNAME;
+
+echo "What is your git email?";
+read GITEMAIL;
+
+cp -r templates/ /home/$USER/eprints/;
+sudo cp docs/motd /etc/motd;
+cp config/vimrc /home/$USER/.vimrc;
+cp config/bashrc /home/$USER/.bashrc;
+git config --global user.name "$GITNAME";
+git config --global user.email "$GITEMAIL";
+
+printf "\n[96mALL DONE![0m\n"
+
