@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-#reloads the EP repository, sets to permissive, changes the apache conf and restarts the server. 
+# regenerates the static of the repo. 
 
 if [[ $# -eq 0 ]]; then
 	echo '[1;37m---------------------';
