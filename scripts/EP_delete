@@ -4,7 +4,8 @@
 
 if [[ $# -eq 0 ]]; then
 	echo '[1;37m---------------------';
-	printf "\n[1m[31mYou must specify which repo you want to delete. [0m \nSo something like: EP_static [repo ID]\n";
+	printf "\n[1m[31mYou must specify which repo you want to delete. [0m \n
+    So something like: EP_static [repo ID]\n";
 	bash /home/$USER/ep_dev_env/scripts/EP_list;	
 	echo '[1;37m---------------------[0m';
 	exit 0;
@@ -20,9 +21,7 @@ REPO_EXISTS=0;
 
 if [ -d $EP_DIR ]; then 
 	for repo in $EP_DIR/*; do
-		if [[ $repo =~ eprints\/$EP_ID$ ]]; then
-                REPO_EXISTS=1;
-    fi	
+		[[ $repo =~ eprints\/$EP_ID$ ]] && REPO_EXISTS=1;	
 	done
 fi
 
