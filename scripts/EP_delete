@@ -12,7 +12,7 @@ if [[ $# -eq 0 ]]; then
 fi
 
 export EP_ID=$1;
-DIR="/home/$USER/eprints/$EP_ID/eprints3/bin";
+DIR="/home/$USER/eprints/$EP_ID";
 
 #Checks if the repo exists or not
 #===================================================
@@ -26,7 +26,7 @@ if [ -d $EP_DIR ]; then
 fi
 
 if [ $REPO_EXISTS -eq 1 ] && [ $EP_ID != 'templates' ]; then
-        printf "[93m\nHooray! The repo exists!\n\n[96m[1mINITIATING THE GENERATION OF THE STATIC FOR $EP_ID...\n\n[0m";
+        printf "[93m\nHooray! The repo exists!\n\n[96m[1mDELETING $EP_ID...\n\n[0m";
 
 else
     echo '[1;37m---------------------';
@@ -39,7 +39,7 @@ else
 fi 
 #====================================================
 
-#EP command - reload the repo
-$DIR/epadmin delete $EP_ID;
+rm -rf $DIR;
+mysql <<< "drop database $EP_ID"
 
 printf "\n[1m[93m'$EP_ID' was destroyed!!![0m\n\n";
