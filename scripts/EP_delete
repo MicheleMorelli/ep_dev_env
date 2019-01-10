@@ -32,7 +32,7 @@ else
     echo '[1;37m---------------------';
             printf "[1m[31mThe \'$EP_ID\' repository is not installed![0m";
             bash /home/$USER/ep_dev_env/scripts/EP_list;
-            printf "\n[1;37mTo install a new repo, run EP_repo_build.[0m\nExiting reload....\n";
+            printf "\n[1;37mTo install a new repo, run EP_repo_build.[0m\nTerminating....\n";
             echo '[1;37m---------------------';
             exit 0;
 
